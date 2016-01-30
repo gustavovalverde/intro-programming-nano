@@ -1,0 +1,127 @@
+/******************************* Global Style ********************************/
+
+main {
+    display: block;
+}
+
+html {
+    height: 100%;
+    background: #f3f3f3;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+figure {
+    margin: 0;
+}
+
+/****************************** Generic Classes *****************************/
+
+img {
+    width: 60%;
+    height: auto;
+}
+
+h1 {
+    color: White;
+    text-align: center; /* This centers the body on the page.*/
+}
+
+p {
+    margin-bottom: 1em;
+    line-height: 1.5em;
+}
+
+ul {
+    list-style-type: circle;
+}
+
+li {
+    margin: 1em 0 1em 0;
+    line-height: 1.5em;
+}
+
+/****************************** Header *****************************/
+
+.title {
+    display: flex;
+    padding: 1%;
+    justify-content: center;
+    align-items: center;
+    background-color: Orange;
+    color: #fff;
+}
+
+/****************************** Main Content *****************************/
+
+.entry {
+    min-height: 100%;
+    padding: 1% 6% 1%;
+    margin: 20px 15%;
+    background-color: White;
+}
+
+.lesson-title {
+    margin: 8px;
+    color: DarkSlateBlue;
+    font-size: 28px;
+    text-align: center;
+}
+
+.codeframe ol {
+    overflow: auto;
+    padding: 1em 2.8em;
+    background: MidnightBlue url(./images/gutter.gif) 2.3em 0 repeat-y;
+    color: White;
+    font-family: "Courier New", Courier, mono;
+}
+
+.codeframe li {
+    margin: 0;
+    line-height: 25px;
+    white-space: pre;
+}
+
+.codeframe code {
+    color: Navy;
+}
+
+.highlight {
+    display: inline;
+    padding: 0 3px 2px;
+    border: 1px solid LightGrey;
+    border-radius: 3px;
+    background-color: Ivory;
+    color: FireBrick;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.videoWrapper {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.site-footer {
+    height: 100px;
+    padding: 1px 0;
+    background: DarkSlateGray;
+    color: #fff;
+}

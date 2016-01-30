@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Nanodegree Notes</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <main>
+      <header class="title">
+        <h1>HTML</h1>
+        <figure>
+          <img alt="HTML5-image" class="header-img" src="http://www.w3schools.com/html/html5.gif">
+        </figure>
+      </header>
+      <div class ="entry">
+        <article class="lesson">
+          <header class="lesson-title">
+            <h2>From a Web Page to the WEB</h2>
+          </header>
+          <div class="lesson-text">
+            <p>A web page is a text document written in a language called <b>HTML</b>. HTML stands for <b>Hypertext Markup Language</b></p>
+            <p>Although here is a great explanation from one of the first classes in the Intro to Programming Nanodegree:</p>
+            <figure>
+              <div class="videoWrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/TronIx9tIqk?rel=0" allowfullscreen></iframe>
+              </div>
+            </figure>
+            <p>All this we call <b>The web</b> is a actually of computers that communicate with each other, When a person goes to a web page like <a href= "http://www.google.com">www.google.com</a>, their computer sends a <b>HTTP</b> Request to a server, the server finds the appropriate HTML document and sends it back to the user's computer where a web browser <em>interprets</em> the page and displays it on the user's screen. This video does a good job of explaining.</p>
+            <p>HTML is dominating the world since 1990, and since then lots of web pages has been created, going around <b>30 billion</b> now (and counting).</p>
+          </div>
+        </article>
+        <article class="lesson">
+          <header class="lesson-title">
+            <h2>The HTML Language</h2>
+          </header>
+          <div class="lesson-text">
+            <p>The <em>Markup</em> part of HTML is because this is a markup language made of markup <b>tags</b>. Each of the HTML <em>tags</em> describes a different document <em>content</em>.</p>
+            <p>Here's a basic example:</p>
+              <div class="codeframe">
+                <ol>
+                  <li><code>&lt;!DOCTYPE html&gt;</code></li>
+                  <li><code>&lt;html&gt;</code></li>
+                  <li><code>  &lt;head&gt;</code></li>
+                    <li><code>    &lt;title&gt;Page Title&lt;/title></code></li>
+                  <li><code>  &lt;/head&gt;</code></li>
+                  <li><code>&lt;body&gt;</code></li>
+                    <li><code>  &lt;h1>My First Heading&lt;/h1&gt;</code></li>
+                    <li><code>    &lt;p>My first paragraph.&lt;/p&gt;</code></li>
+                  <li><code>&lt;/body&gt;</code></li>
+                  <li><code>&lt;/html&gt;</code></li>
+                </ol>
+              </div>
+            <div class="list">
+              <ul>
+                <li><b>Tag</b>: An HTML tag is always contained within angled brackets. Most tags have an opening tag and a closing tag. Some tags (called "void" tags) do not require a closing tag.</li>
+                <li><b>Element</b>: An HTML element refers to everything within a set of opening and closing tags.</li>
+                <li><b>Attribute</b>: This is a property of an HTML element. For example, to set the href attribute of an anchor tag to the Udacity URL, you would write <code class="highlight">&lt;a href="www.udacity.com"&gt;</code>Udacity Web Page<code class="highlight">&lt;a&gt;</code></li>
+              </ul>
+              <p>If you'd like to know more about what you can do with each HTML tag, you can always find the best references in <a href="http://www.w3schools.com/tags/">W3 Schools</a>, try it!</p>
+            </div>
+          </div>
+        </article>
+        <article class="lesson">
+          <header class="lesson-title">
+            <h2>From the HTML "tree" to the "DOM"</h2>
+          </header>
+          <div class="lesson-text">
+            <p>When you start building your webpage, you might realized that the elements of a page are arranged in a <em>tree-like</em> hierarchical structure, where each element has a parent and child elements. Although we call it a tree-like structure, in a tree the root [element] is at the bottom while the <em>"last"</em> child (or childs) is right at the top, as opposed to HTML where the <b>root</b>element is at the top of the <em>tree</em>.You can use the <b>developer tools in Chrome</b> to navigate through the tree structure. Press <b>ctrl-shift-I</b> to start it, then look to the top right of the screen to find the elements of your page. If you select an element it will be highlighted onscreen and its properties displayed. This might be the most useful tool for understanding and editing HTML and CSS.</p>
+            <p>Now, going deeper into the HTML tree-like structure, there's a more important, but also confusing, concept in the Web world which is the <b>DOM</b> (The <b>D</b>ocument <b>O</b>bject <b>M</b>odel), this concept is difficult to understand not just for beginners but also for advance developers, to whom the concept of DOM is like a <em>black box</em>. You can read the techy definition <a href="https://www.w3.org/TR/DOM-Level-2-Core/introduction.html">here</a>, but that might be more confusing than helpful if you don't understand other concepts like an <em>API</em>.</p>
+            <p> The first problem when people try to figure out the difference between the DOM and their actual HTML code is that both are almost the same. The critical difference between the ideas of DOM and your HTML code is that the DOM can only exist at <b>run time</b>, inside the browser. The browser builds an understanding of your code when it reads it, that understanding is called the DOM and it exists <b>inside</b> the browser. The <b>tags</b> in HTML represent instructions to the browser about how to build the DOM and what different parts of the DOM are there.</p>
+            <p>Now, the <b>DOM</b> is somewhat complicated to explain if not <em>shown</em> and visualized, so I'll make this part easier with this video:</p>
+            <figure>
+              <div class="videoWrapper">
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/vpqm2fPEzbI?rel=0" allowfullscreen></iframe>
+              </div>
+            </figure>
+          </div>
+        </article>
+        <article class="lesson">
+          <header class="lesson-title">
+            <h2>Making HTML "Pretty" with CSS</h2>
+          </header>
+          <div class="lesson-text">
+            <p>CSS stands for <b>Cascading Style Sheets</b> and this is the code written to control the style of your HTML elements. This is done by giving similar HTML elements the same class name and then specifying the style that should apply to that class, for example. Inheretance is a key feature in CSS, and by using it web developers can achieve two things:</p>
+            <div class="list">
+              <ul>
+                <li><b>Avoid errors</b>: CSS helps by avoiding repetition, this way web developers don't have to do the same things over and over to style their site. This reduces the probability of errors when the developer decides to make a change to something.</li>
+                <li><b>Consistency</b>: Instead of manually giving each one the HTML tags the same style, web developers are able to assign different <code class="highlight">div</code>'s the same class and then specify the style for that class in only one place.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+      <footer class="site-footer">
+        <h2>Soon some footer here :)</h2>
+      </footer>
+    </main>
+  </body>
+</html>
