@@ -8,16 +8,20 @@ daysOfMonths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 def isLeapYear(year):
     if year % 4 != 0:
-        return 365
+        return daysOfMonths
     elif year % 100 != 0:
-        return 366
+        daysOfMonths[1] = 29
+        return daysOfMonths
     elif year % 400 != 0:
-        return 366
+        return daysOfMonths
     else:
-        365
+        daysOfMonths[1] = 29
+        return daysOfMonths
 
 def daysBetweenDates(y1, m1, d1, y2, m2, d2):
-    ##
-    # Your code here.
-    ##
+    from_date = y1, m2, d1
+    to_date = y2, m2, d2
+    days = (sum(y1, m1) + d1) - (sum(y2, m2) + d2)
     return days
+
+print daysBetweenDates(isLeapYear(2004), 2, 3, isLeapYear(2004), 4, 12)
