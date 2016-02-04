@@ -7,11 +7,14 @@
 daysOfMonths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 def isLeapYear(year):
-    ##
-    # Your code here. Return True or False
-    # Pseudo code for this algorithm is found at
-    # http://en.wikipedia.org/wiki/Leap_year#Algorithm
-    ##
+    if year % 4 != 0:
+        return 365
+    elif year % 100 != 0:
+        return 366
+    elif year % 400 != 0:
+        return 366
+    else:
+        365
 
 def daysBetweenDates(y1, m1, d1, y2, m2, d2):
     ##
