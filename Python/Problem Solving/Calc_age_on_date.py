@@ -19,9 +19,12 @@ def isLeapYear(year):
         return daysOfMonths
 
 def daysBetweenDates(y1, m1, d1, y2, m2, d2):
-    from_date = y1, m2, d1
-    to_date = y2, m2, d2
-    days = (sum(y1, m1) + d1) - (sum(y2, m2) + d2)
-    return days
+    days = 0
+    if y1 < y2:
+        for y in range(y1, y2):
+            days += sum(isLeapYear(y))
+    m1 = sum(daysOfMonths[m1 - 1:])
+    print days
+    print m1
 
-print daysBetweenDates(isLeapYear(2004), 2, 3, isLeapYear(2004), 4, 12)
+print daysBetweenDates(2004, 2, 3, 2009, 4, 12)
