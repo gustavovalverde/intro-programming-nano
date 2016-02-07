@@ -19,8 +19,15 @@ def isLeapYear(year):
         return daysOfMonths
 
 def isDateValid(y1,y2):
-    if y1 <= y2:
+    if y1 < y2:
         return True
+    elif y1 == y2:
+        if m1 < m2:
+            return True
+        elif m1 == m2:
+            if d1 <= d2:
+                return True
+        else: return "Please enter a valid date"
     else:
         return "Please enter a valid initial date"
 
