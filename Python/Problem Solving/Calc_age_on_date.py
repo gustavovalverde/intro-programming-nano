@@ -4,7 +4,7 @@
 # Simply put, if you were born 1 Jan 2012 and todays date is
 # 2 Jan 2012 you are 1 day old.
 
-daysOfMonths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+daysOfMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 def isLeapYear(year):
     if year % 4 != 0:
@@ -30,8 +30,8 @@ def isDateValid(y1, y2, m1, m2, d1, d2):
     else:
         return "Please enter a valid initial date"
 
-def YearCalc(y1, y2):
-    if isDateValid == True:
+def DaysinYear(y1, y2):
+    if isDateValid is True:
         return 366
     else:
         return 365
