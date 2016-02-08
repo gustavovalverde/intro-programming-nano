@@ -6,6 +6,7 @@
 
 daysOfMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
+
 def isLeapYear(year):
     if year % 4 != 0:
         return False
@@ -15,6 +16,7 @@ def isLeapYear(year):
         return False
     else:
         return True
+
 
 def isDateValid(y1, y2, m1, m2, d1, d2):
     if y1 < y2:
@@ -30,11 +32,24 @@ def isDateValid(y1, y2, m1, m2, d1, d2):
     else:
         return "Please enter a valid initial date"
 
+
 def DaysinYear(y1, y2):
+    days = 0
+    for y in range(y1, y2):
+        if isDateValid(y) is True:
+            days += 366
+        else:
+            days += 365
+
+"""
+def DaysinMonths(m1, m2):
     if isDateValid is True:
-        return 366
+        if m1 or m2 == 2:
+        return daysOfMonths[1]
     else:
-        return 365
+        return daysOf
+"""
+
 
 def daysBetweenDates(y1, m1, d1, y2, m2, d2):
     days = 0
@@ -44,4 +59,4 @@ def daysBetweenDates(y1, m1, d1, y2, m2, d2):
     print days
 #    print m1
 
-print daysBetweenDates(2004, 2, 3, 2009, 4, 12)
+print daysBetweenDates(2001, 2, 3, 2004, 4, 12)
