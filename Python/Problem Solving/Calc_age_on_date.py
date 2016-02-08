@@ -28,24 +28,25 @@ def isDateValid(y1, m1, d1, y2, m2, d2):
             if d1 <= d2:
                 return True
         else:
-            return "Please enter a valid initial date"
+            print "Please enter a valid initial date"
+            return False
     else:
-        return "Please enter a valid initial date"
+        print "Please enter a valid initial date"
+        return False
 
 
 def daysBetweenDates(y1, m1, d1, y2, m2, d2):
     days = 0
-    if y1 < y2:
-        for y in range(y1, y2):
-            if isLeapYear(y) is True:
-                days += 366
-            else:
-                days += 365
-
-# def DaysInMonths(m1, m2, d1, d2):
     BirthDate = sum(daysOfMonths[0: m1 - 1]) + d1
     CurrentDate = sum(daysOfMonths[0: m2 - 1]) + d2
-    days = days + CurrentDate - BirthDate
-    return days
+    if isDateValid(y1, m1, d1, y2, m2, d2) is True:
+        if y1 < y2:
+            for y in range(y1, y2):
+                if isLeapYear(y) is True:
+                    days += 366
+                else:
+                    days += 365
+        days = days + CurrentDate - BirthDate
+        print "You are " + str(days) + " old"
 
-print daysBetweenDates(2001, 2, 3, 2004, 4, 12)
+daysBetweenDates(2001, 01, 20, 2002, 04, 26)
