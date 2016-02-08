@@ -36,7 +36,7 @@ def isDateValid(y1, y2, m1, m2, d1, d2):
 def DaysinYear(y1, y2):
     days = 0
     for y in range(y1, y2):
-        if isDateValid(y) is True:
+        if isLeapYear(y) is True:
             days += 366
         else:
             days += 365
