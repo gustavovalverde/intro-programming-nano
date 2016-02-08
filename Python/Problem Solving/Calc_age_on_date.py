@@ -18,7 +18,7 @@ def isLeapYear(year):
         return True
 
 
-def isDateValid(y1, y2, m1, m2, d1, d2):
+def isDateValid(y1, m1, d1, y2, m2, d2):
     if y1 < y2:
         return True
     elif y1 == y2:
@@ -33,30 +33,19 @@ def isDateValid(y1, y2, m1, m2, d1, d2):
         return "Please enter a valid initial date"
 
 
-def DaysinYear(y1, y2):
-    days = 0
-    for y in range(y1, y2):
-        if isLeapYear(y) is True:
-            days += 366
-        else:
-            days += 365
-
-"""
-def DaysinMonths(m1, m2):
-    if isDateValid is True:
-        if m1 or m2 == 2:
-        return daysOfMonths[1]
-    else:
-        return daysOf
-"""
-
-
 def daysBetweenDates(y1, m1, d1, y2, m2, d2):
     days = 0
-    for y in range(y1, y2):
-        days += y
-#    m1 = sum(daysOfMonths[m1 - 1:])
-    print days
-#    print m1
+    if y1 < y2:
+        for y in range(y1, y2):
+            if isLeapYear(y) is True:
+                days += 366
+            else:
+                days += 365
+
+# def DaysInMonths(m1, m2, d1, d2):
+    BirthDate = sum(daysOfMonths[0: m1 - 1]) + d1
+    CurrentDate = sum(daysOfMonths[0: m2 - 1]) + d2
+    days = days + CurrentDate - BirthDate
+    return days
 
 print daysBetweenDates(2001, 2, 3, 2004, 4, 12)
