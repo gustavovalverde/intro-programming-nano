@@ -1,10 +1,12 @@
 import turtle
 
 
-def draw_square():
+def canvas():
     window = turtle.Screen()
     window.bgcolor("grey")
 
+
+def draw_square():
     gus = turtle.Turtle()
 
     # customizing gus
@@ -12,15 +14,14 @@ def draw_square():
     gus.color("blue")
     gus.speed(1)
 
-    gus.forward(100)
-    gus.right(90)
-    gus.forward(100)
-    gus.right(90)
-    gus.forward(100)
-    gus.right(90)
-    gus.forward(100)
-    gus.right(90)
+    pos = 0
+    while pos < 4:
+        gus.forward(100)
+        gus.right(90)
+        pos += 1
 
+
+def draw_circle():
     # adding a new friend
     ros = turtle.Turtle()
     ros.shape("classic")
@@ -29,6 +30,8 @@ def draw_square():
 
     ros.circle(100)
 
-    window.exitonclick()
 
+canvas()
 draw_square()
+draw_circle()
+turtle.Screen().exitonclick()
