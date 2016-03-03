@@ -4,10 +4,20 @@ import turtle
 def draws():
     window = turtle.Screen()
     window.bgcolor("grey")
-    draw_square()
-    draw_circle()
-    draw_triangle()
+    draw_flower()
     window.exitonclick()
+
+def draw_flower():
+    box = turtle.Turtle()
+    box.shape("turtle")
+    box.color("blue")
+    box.speed(1)
+
+    sides = 0
+    while sides < 4:
+        box.forward(100)
+        box.right(90)
+        sides += 1
 
 
 def draw_square():
