@@ -7,17 +7,18 @@ def draws():
     draw_flower()
     window.exitonclick()
 
-def draw_flower():
-    box = turtle.Turtle()
-    box.shape("turtle")
-    box.color("blue")
-    box.speed(1)
 
-    sides = 0
-    while sides < 4:
-        box.forward(100)
-        box.right(90)
-        sides += 1
+def draw_flower():
+    flower = turtle.Turtle()
+    flower.shape("turtle")
+    flower.color("blue")
+    flower.speed(10)
+
+    for degrees in range(0, 40):
+        for sides in range(0, 4):
+            flower.forward(100)
+            flower.left(90)
+        flower.left(10)
 
 
 def draw_square():
