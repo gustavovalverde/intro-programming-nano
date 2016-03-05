@@ -9,14 +9,23 @@ def draw_flower():
     pikachu = pencil(2, "arrow", "yellow", 2)
     hulk = pencil(2, "arrow", "green", 2)
 
+    hulk.begin_fill()
+    hulk.down()
+    draw_stem(hulk, 50, 8)
+    hulk.up()
+    hulk.end_fill()
+
+    rose.begin_fill()
+    rose.down()
     num_petals = 8
     for petal in xrange(num_petals):
         rose.setheading(0)
         rose.right(360 * petal/num_petals)
         draw_petal(rose, 75, 8)
+    rose.up()
+    rose.end_fill()
 
     draw_center(pikachu)
-    draw_stem(hulk, 50, 8)
 
     window.exitonclick()
 
