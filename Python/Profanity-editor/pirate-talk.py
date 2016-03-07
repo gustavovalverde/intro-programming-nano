@@ -11,19 +11,10 @@ def read_text():
 
 
 def check_profanity(text_to_check):
-    connection = urllib.urlopen("http://www.wdyl.com/profanity?q=" +
+    connection = urllib.urlopen("http://isithackday.com/arrpi.php?text=" +
                                 text_to_check)
     output = connection.read()
-
-    if "true" in output:
-        print "Profanity Alert!"
-
-    if "false" in output:
-        print "Everything's good"
-
-    else:
-        "Something went wrong, the file might "
-
+    print output
     connection.close()
 
 read_text()
