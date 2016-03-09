@@ -1,29 +1,24 @@
-import webbrowser
-
-
 class Video():
-    def __init__(self, movie_title, movie_storyline, poster_image,
-                 youtube_trailer):
-        self.title = movie_title
-        self.storyline = movie_storyline
-        self.poster_image_url = poster_image
-        self.trailer_youtube_url = youtube_trailer
+    def __init__(self, video_title, video_storyline, video_poster,
+                 video_trailer):
+        self.title = video_title
+        self.storyline = video_storyline
+        self.poster = video_poster
+        self.trailer = video_trailer
 
 
-class Movies():
-    def __init__(self, movie_title, movie_storyline, poster_image,
-                 youtube_trailer):
-        Video.__init__()
-        self.title = movie_title
-        self.storyline = movie_storyline
-        self.poster_image_url = poster_image
-        self.trailer_youtube_url = youtube_trailer
+class Movies(Video):
+    def __init__(self, video_title, video_storyline, video_poster,
+                 video_trailer, movie_box):
+        Video.__init__(self, video_title, video_storyline, video_poster,
+                       video_trailer)
+        self.boxoffice = movie_box
 
-class Series():
-    def __init__(self, movie_title, movie_storyline, poster_image,
-                 youtube_trailer):
-        self.title = movie_title
-        self.storyline = movie_storyline
-        self.poster_image_url = poster_image
-        self.trailer_youtube_url = youtube_trailer
 
+class TVShow(Video):
+    def __init__(self, video_title, video_storyline, video_poster,
+                 video_trailer, show_seasons, show_episodes):
+        Video.__init__(self, video_title, video_storyline, video_poster,
+                       video_trailer)
+        self.seasons = show_seasons
+        self.episodes = show_episodes
