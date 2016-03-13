@@ -1,4 +1,5 @@
 class Video():
+    """This Class (in the context of this project) refers to all """
     def __init__(self, video_title, video_storyline, video_poster,
                  video_trailer):
         self.title = video_title
