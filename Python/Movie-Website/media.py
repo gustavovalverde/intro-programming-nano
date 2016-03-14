@@ -1,5 +1,13 @@
+#
+# Class definition file for my Movie Website.
+# Primarily for use in 'entertainment_movies.py'
+#
+
+
 class Video():
-    """This Class (in the context of this project) refers to all """
+    '''This Class (in the context of this project) refers to all video
+       types, like Movies, TVShows and VideoClips (if any).
+       '''
     def __init__(self, video_title, video_storyline, video_poster,
                  video_trailer):
         self.title = video_title
@@ -9,14 +17,21 @@ class Video():
 
 
 class Movies(Video):
+    '''Defines a type of video (Movies), which it's only difference is
+       the budgeted Box Office.
+       '''
     def __init__(self, video_title, video_storyline, video_poster,
                  video_trailer, movie_box):
+        # It inherits most of it's instance variables from Video() class.
         Video.__init__(self, video_title, video_storyline, video_poster,
                        video_trailer)
-        self.boxoffice = movie_box
+        self.boxoffice = movie_box  # Only instance variable defined here.
 
 
 class TVShow(Video):
+    '''Defines TV Shows (or series), which its a different type of video,
+       which its compose of episodes and seasons.
+       '''
     def __init__(self, video_title, video_storyline, video_poster,
                  video_trailer, show_seasons, show_episodes):
         Video.__init__(self, video_title, video_storyline, video_poster,

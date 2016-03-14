@@ -1,7 +1,8 @@
-import fresh_tomatoes
-import media
 
+import fresh_tomatoes  # This module builds the webpage.
+import media  # This module defines the classes and functions used here.
 
+# Define each Video information. Movie or TV Show
 gatsby = media.Movies("Great Gatsby",
                       "The mysterious past and lavish lifestyle of Jay"
                       " Gatsby.",
@@ -94,6 +95,8 @@ fuller_house = media.TVShow("Fuller House",
                             str(2),
                             str(14))
 
+# Movies takes a list of items to display in the webpage.
+# This is built by fresh_tomatoes.py
 movies = [gatsby, man_on_fire, inception, batman_begins, the_avengers,
           forrest_gump, gladiator, braveheart, game_thrones, the_arrow,
           fuller_house]
