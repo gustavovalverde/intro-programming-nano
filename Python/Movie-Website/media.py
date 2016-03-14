@@ -10,6 +10,7 @@ class Video():
        '''
     def __init__(self, video_title, video_storyline, video_poster,
                  video_trailer):
+        # Made from a basic Video (Movie or TV Show) information.
         self.title = video_title
         self.storyline = video_storyline
         self.poster = video_poster
@@ -25,7 +26,7 @@ class Movies(Video):
         # It inherits most of it's instance variables from Video() class.
         Video.__init__(self, video_title, video_storyline, video_poster,
                        video_trailer)
-        self.boxoffice = movie_box  # Only instance variable defined here.
+        self.boxoffice = movie_box  # The only instance variable defined here.
 
 
 class TVShow(Video):
