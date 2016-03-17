@@ -5,9 +5,9 @@ def draw_flower():
     window = turtle.Screen()
     window.bgcolor("white")
 
-    rose = pencil(2, "arrow", "red", 2)
-    pikachu = pencil(2, "arrow", "yellow", 2)
-    hulk = pencil(2, "arrow", "green", 2)
+    rose = pencil(2, "arrow", "red", 5)
+    pikachu = pencil(2, "arrow", "yellow", 5)
+    hulk = pencil(2, "arrow", "green", 5)
 
     hulk.begin_fill()
     hulk.down()
