@@ -7,11 +7,11 @@
 
 def word_in_pos(word, parts_of_speech):
     for text in parts_of_speech:
-        if text in word.split():
+        if text in word:
             print text
     return None
 
-test_cases = "NOUN FALSE <<@PERSON>< PLURALNOUN"
+test_cases = ["NOUN", "FALSE", "<<@PERSON><", "PLURALNOUN"]
 parts_of_speech = ["PERSON", "PLURALNOUN", "NOUN"]
 
 print word_in_pos(test_cases, parts_of_speech)

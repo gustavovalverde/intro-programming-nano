@@ -1,81 +1,37 @@
-# Let's put it all together. Write code for the function process_madlib, which takes in
-# a string "madlib" and returns the string "processed", where each instance of
-# "NOUN" is replaced with a random noun and each instance of "VERB" is
-# replaced with a random verb. You're free to change what the random functions
-# return as verbs or nouns for your own fun, but for submissions keep the code the way it is!
+# A list of replacement words to be passed in to the play game function.
+parts_of_speech1 = ["PLACE", "PERSON", "PLURALNOUN", "NOUN", "NAME", "VERB",
+                    "OCCUPATION", "ADJECTIVE"]
 
-from random import randint
-
-
-def random_verb():
-    random_num = randint(0, 1)
-    if random_num == 0:
-        return "run"
-    else:
-        return "kayak"
+# The following are some test strings to pass in to the play_game function.
+test_string1 = "Hi, my name is NAME and I really like to VERB PLURALNOUN. I'm also a OCCUPATION at PLACE."
+test_string2 = """PERSON! What is PERSON going to do with all these ADJECTIVE
+                  PLURALNOUN? Only a registered
+                  OCCUPATION could VERB them."""
+test_string3 = "What a ADJECTIVE day! I can VERB the day off from being a OCCUPATION and go VERB at PLACE."
 
 
-def random_noun():
-    random_num = randint(0, 1)
-    if random_num == 0:
-        return "sofa"
-    else:
-        return "llama"
+# Checks if a word in parts_of_speech is a substring of the word passed in.
+def word_in_pos(word, parts_of_speech):
+    for pos in parts_of_speech:
+        if pos in word:
+            return pos
+    return None
 
 
-def word_transformer(word):
-    if word == "NOUN":
-        return random_noun()
-    if word == "VERB":
-        return random_verb()
-    else:
-        return word[0]
+# Plays a full game of mad_libs. A player is prompted to replace words in
+# ml_string, which appear in parts_of_speech with their own words.
+def play_game(ml_string, parts_of_speech):
+    replaced = []
+    ml_string = ml_string.split()
+    for word in ml_string:
+        replacement = word_in_pos(word, parts_of_speech)
+        if replacement is not None:
+            user_input = raw_input("Type in a: " + replacement + " ")
+            word = word.replace(replacement, user_input)
+            replaced.append(word)
+        else:
+            replaced.append(word)
+    replaced = " ".join(replaced)
+    return replaced
 
-
-def process_madlib(mad_lib):
-    processed = ""
-    while len(mad_lib) > 0:
-        processed = word_transformer(mad_lib)
-
-    # your code here
-    # you may find the built-in len function useful for this quiz
-    # documentation: https://docs.python.org/2/library/functions.html#len
-
-test_string_1 = "This is a good NOUN to use when you VERB your food"
-test_string_2 = "I'm going to VERB to the store and pick up a NOUN or two."
-print process_madlib(test_string_1)
-print process_madlib(test_string_2)
-
-# Lesson 2.6: Structured Data - Lists
-
-# Similar to how strings are seuqences of characters, lists are
-# sequences of anything! We can have lists of numbers, lists of
-# characters, even lists of lists! And we can mix up the contents
-# too so we can have lists containing many different things.
-
-# https://www.udacity.com/course/viewer#!/c-nd000/l-4180729266/m-48652460
-
-p = ['y', 'a', 'b', 'b', 'a', '!']
-print p
-print p[0]
-print p[2:4]
-
-# Add your own code and notes here
-
-# Lesson 2.6: For Loops
-
-# For loops, like while loops, are useful for running a block of code
-# multiple times. For loops make iterating through elements in a list
-# easier than using a while loop.
-
-# https://www.udacity.com/course/viewer#!/c-nd000/l-4152219158/m-48204891
-
-
-def print_all_elements(p):
-    for e in p:
-        print e
-
-myList = [1, 2, [3, 4]]
-print_all_elements(myList)
-
-# Add your own code and notes here
+print play_game(test_string1, parts_of_speech1)
