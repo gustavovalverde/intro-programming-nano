@@ -1,6 +1,7 @@
 # IPND Stage 2 Final Project
 
 # This can be used as a study tool to help you remember important vocabulary!
+blanks = ["___1___", "___2___", "___3___", "___4___", "___5___"]
 
 easy_statement = '''A ___1___ is created with the def keyword. You specify the
 inputs a ___1___ takes by adding ___2___ separated by commas between the
@@ -24,13 +25,17 @@ def Difficulty(user_level):
     level_input = raw_input("What's your desired difficulty? ")
     if level_input == "easy":
         print "You've chosen easy!"
+        answers = easy_answers
+        statement = easy_statement
         print ""
         print "How many guesses would you like per problem?"
         guess_input = raw_input("Please enter a positive integer number: ")
-        return easy_statement, easy_answers, guess_input
+        return statement, answers, guess_input
 
     elif level_input == "medium":
         print "You've chosen medium!"
+        answers = easy_answers
+        statement = easy_statement
         print ""
         print "How many guesses would you like per problem?"
         guess_input = raw_input("Please enter a positive integer number: ")
@@ -46,16 +51,15 @@ def Difficulty(user_level):
         print "That's not an option!"
         continue
 
-def easy_mode(guess_input):
-    guesses = 0
-    while guesses < guess_input:
+# def easy_mode(guess_input):
+#     guesses = 0
+#    while guesses < guess_input:
 
 
-
-def word_in_pos(word, sample):
-    for pos in answers:
-        if pos in word:
-            return pos
+def answer_in_statement(user_answer, statement):
+    for answer in statement:
+        if answer in user_answer:
+            return user_answer
     return None
 
 # A player is prompted to replace words in
