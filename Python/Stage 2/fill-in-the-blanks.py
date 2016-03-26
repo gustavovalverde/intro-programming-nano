@@ -19,13 +19,15 @@ def Difficulty(user_level):
     """This function selects the difficulty chosen by user, and asks for the
     number of guesses the user wants for that difficulty
     """
-    level_input = raw_input()
+    print "Please select a game difficulty by typing it in!"
+    print "Possible choices include easy, medium, and hard."
+    level_input = raw_input("What's your desired difficulty? ")
     if level_input == "easy":
         print "You've chosen easy!"
         print ""
         print "How many guesses would you like per problem?"
         guess_input = raw_input("Please enter a positive integer number: ")
-        easy_mode(guess_input)
+        return easy_statement, easy_answers, guess_input
 
     elif level_input == "medium":
         print "You've chosen medium!"
