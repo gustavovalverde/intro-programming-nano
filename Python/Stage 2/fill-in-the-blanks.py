@@ -12,44 +12,50 @@ to return. ___2___ can be standard data types such as string, number,
 dictionary, tuple, and ___4___ or can be more complicated such as objects and
 lambda functions.'''
 
+print "Please select a game difficulty by typing it in!"
+print "Possible choices include easy, medium, and hard."
+level_input = raw_input("What's your desired difficulty? ")
 
-def Difficulty():
+
+def game_level(level_input):
     """This function selects the difficulty chosen by user, and asks for the
     number of guesses the user wants for that difficulty
     """
-    print "Please select a game difficulty by typing it in!"
-    print "Possible choices include easy, medium, and hard."
-    level_input = raw_input("What's your desired difficulty? ")
     if level_input == "easy":
         print "You've chosen easy!"
         answers = easy_answers
         statement = easy_statement
-        print ""
-        print "How many guesses would you like per problem?"
-        guess_input = raw_input("Please enter a positive integer number: ")
-        return statement, answers, guess_input
-
+        return statement, answers
     elif level_input == "medium":
         print "You've chosen medium!"
         answers = easy_answers
         statement = easy_statement
-        print ""
-        print "How many guesses would you like per problem?"
-        guess_input = raw_input("Please enter a positive integer number: ")
-        medium_mode(guess_input)
-
+        return statement, answers
     elif level_input == "hard":
         print "You've chosen hard!"
-        print ""
-        print "How many guesses would you like per problem?"
-        guess_input = raw_input("Please enter a positive integer number: ")
-        hard_mode(guess_input)
+        answers = easy_answers
+        statement = easy_statement
+        return statement, answers
     else:
         print "That's not an option!"
+
+print game_level()[0]  # returns just the first function value
+
+def game_guesses():
+    print "How many guesses would you like per problem?"
+    guess_input = raw_input("Please enter a positive integer number: ")
+
 
 # def easy_mode(guess_input):
 #     guesses = 0
 #    while guesses < guess_input:
+def check_answer(user_response, answers):
+    answer_set_index = 0
+    blank_set_index = 0
+    user_prompt = 1    while answer_set_index < len(answers):
+            if user_response == answers[answer_set_index]:
+                return "Correct!"
+            return "Incorrect.  Please try your answer again."
 
 
 def answer_in_statement(blank, blanks):
@@ -78,5 +84,3 @@ def play_game(guess_input, statement, answers):
                 replaced.append(blank)
         replaced = " ".join(replaced)
     return replaced
-
-print Difficulty()[0]  # returns just the first function value
