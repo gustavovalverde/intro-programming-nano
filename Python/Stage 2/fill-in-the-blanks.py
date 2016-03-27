@@ -1,6 +1,8 @@
 # IPND Stage 2 Final Project
 
 # This can be used as a study tool to help you remember important vocabulary!
+import re
+
 blanks = ["___1___", "___2___", "___3___", "___4___", "___5___"]
 
 easy_answers = ["function", "arguments", "None", "set"]
@@ -26,12 +28,12 @@ def game_level():
         statement = easy_statement
     elif level_input == "medium":
         print "You've chosen medium!"
-        answers = easy_answers
-        statement = easy_statement
+        answers = medium_answers
+        statement = medium_statement
     elif level_input == "hard":
         print "You've chosen hard!"
-        answers = easy_answers
-        statement = easy_statement
+        answers = hard_answers
+        statement = hard_statement
     else:
         print "That's not an option!"
     return (statement, answers)
@@ -39,33 +41,39 @@ def game_level():
 statement, answers = game_level()
 
 
-def answer_check(answers, user_answer, blanks):
+def isCorrect(answers, user_answer, blanks):
     for answer in blanks:
         if user_answer in answers:
-            return answer
-    return None
+            return True
+    return False
 
+# print answer_check(answers, "function", blanks)
 
 def play_game(statement, answers, blanks):
     print statement
     print "How many guesses would you like per problem?"
     attempts_input = raw_input("Please enter a positive integer number: ")
+    attempts = 0
+    blank_index = 0
+    statement = re.findall(r"[\w]+|[,]", statement)
     replaced = []
-    attemps = 0
-    statement = statement.split()
-    while attemps < attempts_input:
-        for blank in blanks:
+    for index, blank in enumerate(statement):
+        attempts += 1
+        if blank in blanks:
+            print blank
             user_answer = raw_input("What should be submitted for" +
                                     blank + "? ")
-            the_answer = answer_check(answers, user_answer, blanks)
-            if the_answer is not None:
-                blank = blank.replace(user_answer, blank)
-                replaced.append(blank)
+            if isCorrect(answers, user_answer, blanks) is True:
+                replaced.append(user_answer)
+                statement[index] = user_answer
                 print replaced
+                print statement
             else:
-                replaced.append(blank)
-                attemps += attemps
-        replaced = " ".join(replaced)
-    return replaced
+                print "Wrong"
+#                statement.append(blank)
+#                attempts += attempts
+        else:
+            blank_index += 1
+    return statement
 
 play_game(statement, answers, blanks)

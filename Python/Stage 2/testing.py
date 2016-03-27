@@ -47,9 +47,9 @@ def answer_set(quiz_select):
         return quiz3_answers
 #This function checks the user's answer against the answer set
 def answer_check(user_answer, correct_answer, answer_index):
-     if user_answer == correct_answer[answer_index]:
-         return "correct"
-     return "wrong"
+    if user_answer == correct_answer[answer_index]:
+        return "correct"
+    return "wrong"
 # This is the function for the game itself
 def fill_in_the_blanks_quiz():
     attempt_index = 1  #Tracks the number of attempts to answer
@@ -59,23 +59,23 @@ def fill_in_the_blanks_quiz():
 
     answer_index = 0  #This keeps track of which answer we want to check
     while blank_index < len(blanks):
-    if attempt_index > int(attempts):
-        print  "Sorry you have run out of chances. Game over."
-        blank_index = len(blanks) #this will end the while loop
-    else:
-        user_answer = raw_input("What should be substituted in for " + blanks[blank_index] + "?")
-        if answer_check(user_answer, correct_answer, answer_index) == "wrong":
-            attempt_index = attempt_index + 1
-            print "Your answer was not correct!" + "\n"
-            if attempt_index == int(attempts):
-                print "This is your last chance to get this one." + "\n"
-        if answer_check(user_answer, correct_answer, answer_index) == "correct":
-            print "Correct!" + "\n"
-            quiz = quiz.replace(blanks[blank_index], user_answer) #this replaces the blank with the correct answer
-            print quiz + "\n" #this prints the quiz with the blank replaced
-            blank_index += 1
-            answer_index += 1
-            attempt_index = 1 #reset to 1 after a correct answer
-            if blank_index == len(blanks):
-                print "You Won!!! Game Over."
+        if attempt_index > int(attempts):
+            print  "Sorry you have run out of chances. Game over."
+            blank_index = len(blanks) #this will end the while loop
+        else:
+            user_answer = raw_input("What should be substituted in for " + blanks[blank_index] + "?")
+            if answer_check(user_answer, correct_answer, answer_index) == "wrong":
+                attempt_index = attempt_index + 1
+                print "Your answer was not correct!" + "\n"
+                if attempt_index == int(attempts):
+                    print "This is your last chance to get this one." + "\n"
+            if answer_check(user_answer, correct_answer, answer_index) == "correct":
+                print "Correct!" + "\n"
+                quiz = quiz.replace(blanks[blank_index], user_answer) #this replaces the blank with the correct answer
+                print quiz + "\n" #this prints the quiz with the blank replaced
+                blank_index += 1
+                answer_index += 1
+                attempt_index = 1 #reset to 1 after a correct answer
+                if blank_index == len(blanks):
+                    print "You Won!!! Game Over."
 fill_in_the_blanks_quiz()
