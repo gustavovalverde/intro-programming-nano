@@ -39,20 +39,12 @@ def game_level(level_input):
     else:
         print "That's not an option!"
 
-print game_level()[0]  # returns just the first function value
 
-def game_guesses():
-    print "How many guesses would you like per problem?"
-    guess_input = raw_input("Please enter a positive integer number: ")
-
-
-# def easy_mode(guess_input):
-#     guesses = 0
-#    while guesses < guess_input:
 def check_answer(user_response, answers):
     answer_set_index = 0
     blank_set_index = 0
-    user_prompt = 1    while answer_set_index < len(answers):
+    user_prompt = 1
+    while answer_set_index < len(answers):
             if user_response == answers[answer_set_index]:
                 return "Correct!"
             return "Incorrect.  Please try your answer again."
@@ -65,16 +57,17 @@ def answer_in_statement(blank, blanks):
     return None
 
 
-# A player is prompted to replace words in
-# statement, which appear in easy_string, medium_string or hard_string with
-# their own words.
-def play_game(guess_input, statement, answers):
+def play_game(statement, answers, blanks):
+    game_level(level_input)  # returns just the first function value
+    print "How many guesses would you like per problem?"
+    attempts_input = raw_input("Please enter a positive integer number: ")
     replaced = []
-    guesses = 0
+    attemps = 0
     statement = statement.split()
-    while guesses < guess_input:
-        for blank in statement:
-            replacement = answer_in_statement(blank, answers)
+    while attemps < attempts_input:
+        for blank in blanks:
+            user_answer = raw_input("What should be submitted for" +
+                                    blank + "? ")
             if replacement is not None:
                 user_input = raw_input("What should be submitted for" +
                                        replacement + "? ")
@@ -84,3 +77,5 @@ def play_game(guess_input, statement, answers):
                 replaced.append(blank)
         replaced = " ".join(replaced)
     return replaced
+
+play_game(easy_statement, easy_answers)
