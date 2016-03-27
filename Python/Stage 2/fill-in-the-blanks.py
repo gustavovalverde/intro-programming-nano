@@ -12,53 +12,42 @@ to return. ___2___ can be standard data types such as string, number,
 dictionary, tuple, and ___4___ or can be more complicated such as objects and
 lambda functions.'''
 
-print "Please select a game difficulty by typing it in!"
-print "Possible choices include easy, medium, and hard."
-level_input = raw_input("What's your desired difficulty? ")
 
-
-def game_level(level_input):
+def game_level():
     """This function selects the difficulty chosen by user, and asks for the
     number of guesses the user wants for that difficulty
     """
+    print "Please select a game difficulty by typing it in!"
+    print "Possible choices include easy, medium, and hard."
+    level_input = raw_input("What's your desired difficulty? ")
     if level_input == "easy":
         print "You've chosen easy!"
         answers = easy_answers
         statement = easy_statement
-        return statement, answers
     elif level_input == "medium":
         print "You've chosen medium!"
         answers = easy_answers
         statement = easy_statement
-        return statement, answers
     elif level_input == "hard":
         print "You've chosen hard!"
         answers = easy_answers
         statement = easy_statement
-        return statement, answers
     else:
         print "That's not an option!"
+    return (statement, answers)
+
+statement, answers = game_level()
 
 
-def check_answer(user_response, answers):
-    answer_set_index = 0
-    blank_set_index = 0
-    user_prompt = 1
-    while answer_set_index < len(answers):
-            if user_response == answers[answer_set_index]:
-                return "Correct!"
-            return "Incorrect.  Please try your answer again."
-
-
-def answer_in_statement(blank, blanks):
+def answer_check(answers, user_answer, blanks):
     for answer in blanks:
-        if answer in blank:
+        if user_answer in answers:
             return answer
     return None
 
 
 def play_game(statement, answers, blanks):
-    game_level(level_input)  # returns just the first function value
+    print statement
     print "How many guesses would you like per problem?"
     attempts_input = raw_input("Please enter a positive integer number: ")
     replaced = []
@@ -68,14 +57,15 @@ def play_game(statement, answers, blanks):
         for blank in blanks:
             user_answer = raw_input("What should be submitted for" +
                                     blank + "? ")
-            if replacement is not None:
-                user_input = raw_input("What should be submitted for" +
-                                       replacement + "? ")
-                blank = blank.replace(replacement, user_input)
+            the_answer = answer_check(answers, user_answer, blanks)
+            if the_answer is not None:
+                blank = blank.replace(user_answer, blank)
                 replaced.append(blank)
+                print replaced
             else:
                 replaced.append(blank)
+                attemps += attemps
         replaced = " ".join(replaced)
     return replaced
 
-play_game(easy_statement, easy_answers)
+play_game(statement, answers, blanks)
