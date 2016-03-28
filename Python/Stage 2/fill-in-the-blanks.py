@@ -1,8 +1,6 @@
 # IPND Stage 2 Final Project
 
 # This can be used as a study tool to help you remember important vocabulary!
-import re
-
 blanks = ["___1___", "___2___", "___3___", "___4___", "___5___"]
 
 easy_answers = ["function", "arguments", "None", "set"]
@@ -41,11 +39,11 @@ def game_level():
 statement, answers = game_level()
 
 
-def isCorrect(answers, user_answer, blanks):
+def answer_check(answers, user_answer, blanks):
     for answer in blanks:
         if user_answer in answers:
-            return True
-    return False
+            return user_answer
+    return None
 
 # print answer_check(answers, "function", blanks)
 
@@ -53,24 +51,25 @@ def play_game(statement, answers, blanks):
     print statement
     print "How many guesses would you like per problem?"
     attempts_input = raw_input("Please enter a positive integer number: ")
-    blank_index = 0
-    statement = re.findall(r"[\w]+|[,]", statement)
-    for index, blank in enumerate(statement):
-        if blank in blanks:
-            user_answer = raw_input("What should be submitted for" +
-                                    blank + "? ")
-            for blank in statement:
-                statement[index] = user_answer
-#            if isCorrect(answers, user_answer, blanks) is True:
-#               replaced.append(user_answer)
-#               statement[index] = user_answer
-#               print replaced
-#            else:
-#                print "Wrong"
-#                statement.append(blank)
-#                attempts += attempts
-        else:
-            blank_index += 1
-    print statement
+    attempts = 0
+    statement = statement.split()
+    while attempts < int(attempts_input):
+        for index, blank in enumerate(statement):
+            if blank in blanks:
+                user_answer = raw_input("What should be submitted for" +
+                                        blank + "? \n")
+                good_answer = answer_check(answers, user_answer, blanks)
+                if good_answer is not None:
+                    statement[index] = good_answer
+                    replaced = " ".join(statement)
+                    print replaced + "\n"
+                else:
+                    print "That's the wrong answer, please try again"
+                    attempts += 1
+                    replaced = " ".join(statement)
+                    print replaced + "\n"
+    else:
+        print "Sorry, you ran out of attempts"
+    print "*******This is your final statement******* \n" + replaced
 
 play_game(statement, answers, blanks)
