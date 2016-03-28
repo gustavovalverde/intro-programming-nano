@@ -19,7 +19,7 @@ def game_level():
     """
     print "Please select a game difficulty by typing it in!"
     print "Possible choices include easy, medium, and hard."
-    level_input = raw_input("What's your desired difficulty? ")
+    level_input = raw_input("What's your desired difficulty? ").lower()
     if level_input == "easy":
         print "You've chosen easy!"
         answers = easy_answers
@@ -39,37 +39,41 @@ def game_level():
 statement, answers = game_level()
 
 
-def answer_check(answers, user_answer, blanks):
-    for answer in blanks:
-        if user_answer in answers:
-            return user_answer
+def answer_check(answers, answer_index, user_answer):
+    if user_answer in answers[answer_index]:
+        return user_answer
     return None
 
-# print answer_check(answers, "function", blanks)
 
 def play_game(statement, answers, blanks):
-    print statement
+    print "\n" + statement
     print "How many guesses would you like per problem?"
     attempts_input = raw_input("Please enter a positive integer number: ")
     attempts = 0
     statement = statement.split()
-    while attempts < int(attempts_input):
-        for index, blank in enumerate(statement):
+    answer_index = 0
+    for blank in enumerate(statement):
+        if attempts < int(attempts_input):
             if blank in blanks:
-                user_answer = raw_input("What should be submitted for" +
-                                        blank + "? \n")
-                good_answer = answer_check(answers, user_answer, blanks)
+                user_answer = raw_input("\n" + "What should be submitted for" +
+                                        blank + "? " + "\n")
+                good_answer = answer_check(answers, answer_index, user_answer)
                 if good_answer is not None:
-                    statement[index] = good_answer
-                    replaced = " ".join(statement)
-                    print replaced + "\n"
+#                    statement[s_index] = good_answer
+                    statement = " ".join(statement)
+                    statement = statement.replace(blank, good_answer)
+                    print statement + "\n"
+                    answer_index += 1
                 else:
-                    print "That's the wrong answer, please try again"
+                    print "\n" + "That's the wrong answer, please try again"
                     attempts += 1
+                    print "You have " + str(int(attempts_input) - attempts) + " attempt(s) left" + "\n"
                     replaced = " ".join(statement)
                     print replaced + "\n"
-    else:
-        print "Sorry, you ran out of attempts"
-    print "*******This is your final statement******* \n" + replaced
+        else:
+            print "Sorry, you ran out of attempts"
+            break
+    if attempts < int(attempts_input):
+        print "*******This is your final statement******* \n" + replaced
 
 play_game(statement, answers, blanks)
