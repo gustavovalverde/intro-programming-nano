@@ -53,27 +53,24 @@ def play_game(statement, answers, blanks):
     print statement
     print "How many guesses would you like per problem?"
     attempts_input = raw_input("Please enter a positive integer number: ")
-    attempts = 0
     blank_index = 0
     statement = re.findall(r"[\w]+|[,]", statement)
-    replaced = []
     for index, blank in enumerate(statement):
-        attempts += 1
         if blank in blanks:
-            print blank
             user_answer = raw_input("What should be submitted for" +
                                     blank + "? ")
-            if isCorrect(answers, user_answer, blanks) is True:
-                replaced.append(user_answer)
+            for blank in statement:
                 statement[index] = user_answer
-                print replaced
-                print statement
-            else:
-                print "Wrong"
+#            if isCorrect(answers, user_answer, blanks) is True:
+#               replaced.append(user_answer)
+#               statement[index] = user_answer
+#               print replaced
+#            else:
+#                print "Wrong"
 #                statement.append(blank)
 #                attempts += attempts
         else:
             blank_index += 1
-    return statement
+    print statement
 
 play_game(statement, answers, blanks)

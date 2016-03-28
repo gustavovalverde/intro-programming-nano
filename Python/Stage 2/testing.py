@@ -1,81 +1,101 @@
-#IPND Stage 2 Final Project
-#By Andy Torchia
-#Here are the blank spaceholders
-blanks = ["__1__", "__2__", "__3__", "__4__"]
-#Quiz 1
-quiz1 = """We hold these __1__ to be self-evident, that all men are created __2__,
-that they are endowed by their Creator with certain unalienable __3__, that among
-these are life, liberty and the pursuit of __4__."""
-#Quiz 2
-quiz2 = """We the People of the United States, in Order to form a more __1__ Union,
-establish Justice, insure domestic Tranquility, provide for the common __2__,
-promote the general Welfare, and secure the blessings of __3__ to ourselves and
-our Posterity, do ordain and establish this __4__ for the United States of America."""
-#Quiz 3
-quiz3 = """Four score and __1__ years ago our fathers brought forth on this continent
-a new nation, __2__ in liberty, and __3__ to the proposition that all men are
-__4__ equal."""
-#Here are the answers for the quizes. The program will check the user's
-#responses against these.
-quiz1_answers = ["truths", "equal", "rights", "happiness"]
-quiz2_answers = ["perfect", "defense", "liberty", "constitution"]
-quiz3_answers = ["seven", "conceived", "dedicated", "created"]
-#This function will prompt the user to select one of the quizes.
-#Then the program will tell the user which quiz was selected
-#and then print the quiz.
-quiz_select = raw_input("Please select a quiz. Enter easy, medium, or hard: ")
-def choose_quiz(quiz_select):
-    if quiz_select == "easy":
-        return quiz1
-    if quiz_select == "medium":
-        return quiz2
-    if quiz_select == "hard":
-        return quiz3
-print "You have selected the " + quiz_select + " quiz."
-print
-print choose_quiz(quiz_select) + "\n"
-#This variable sets the number of guesses the user gets
-attempts = raw_input("How many attempts to fill in the blanks would you like? ")
-print
-#This function will select the correct answer set based on which quiz the user chose.
-def answer_set(quiz_select):
-    if choose_quiz(quiz_select) == quiz1:
-        return quiz1_answers
-    if choose_quiz(quiz_select) == quiz2:
-        return quiz2_answers
-    if choose_quiz(quiz_select) == quiz3:
-        return quiz3_answers
-#This function checks the user's answer against the answer set
-def answer_check(user_answer, correct_answer, answer_index):
-    if user_answer == correct_answer[answer_index]:
-        return "correct"
-    return "wrong"
-# This is the function for the game itself
-def fill_in_the_blanks_quiz():
-    attempt_index = 1  #Tracks the number of attempts to answer
-    quiz = choose_quiz(quiz_select)  #This is the quiz that is being used. Blanks will be replaced with correct answers as the game progresses.
-    correct_answer = answer_set(quiz_select)  #Stores the answer set for the quiz in use
-    blank_index = 0  #This keeps track of which blank the user is trying to fill in
+# First, a set of blanks which will appear when the user is prompted to fill in the blanks.
+blanks=["___1___", "___2___", "___3___", "___4___"]
 
-    answer_index = 0  #This keeps track of which answer we want to check
-    while blank_index < len(blanks):
-        if attempt_index > int(attempts):
-            print  "Sorry you have run out of chances. Game over."
-            blank_index = len(blanks) #this will end the while loop
-        else:
-            user_answer = raw_input("What should be substituted in for " + blanks[blank_index] + "?")
-            if answer_check(user_answer, correct_answer, answer_index) == "wrong":
-                attempt_index = attempt_index + 1
-                print "Your answer was not correct!" + "\n"
-                if attempt_index == int(attempts):
-                    print "This is your last chance to get this one." + "\n"
-            if answer_check(user_answer, correct_answer, answer_index) == "correct":
-                print "Correct!" + "\n"
-                quiz = quiz.replace(blanks[blank_index], user_answer) #this replaces the blank with the correct answer
-                print quiz + "\n" #this prints the quiz with the blank replaced
-                blank_index += 1
-                answer_index += 1
-                attempt_index = 1 #reset to 1 after a correct answer
-                if blank_index == len(blanks):
-                    print "You Won!!! Game Over."
-fill_in_the_blanks_quiz()
+
+
+# Here is the first quiz!
+quiz1= '''There are three distinct computer programming languages that are used to create websites.
+The language that is used to define the structure of a website is called ___1___.  ___1___ stands for ___2___, and is used to create the
+text, images, and other elements that appear in a website.  The style of a webpage is defined using a language called ___3___, which stands for
+___4___.  ___3___ is used to determine characteristics such as font style, font size, and background color.'''
+
+# Here is the second quiz:
+quiz2='''A ___1___ serves as a placeholder to which we can assign a ___2___.  When a ___1___ is referenced in a program, it will always point
+to the ___2___ that was assigned to that particular ___1___.  A value can be a number, an equation, or a series of one of more characters
+which is called a ___3___.  The letter a is a ___3___ as is the sentence "I was a teenage werewolf!"
+Two or more ___3___s can be joined together by a process known as ___4___.'''
+
+# And the third quiz; I am using the sample paragraph above:
+quiz3 = '''A ___1___ is created with the def keyword. You specify the inputs a ___1___ takes by
+adding ___2___ separated by commas between the parentheses. ___1___s by default return ___3___ if you
+don't specify the value to return. ___2___ can be standard data types such as string, number, dictionary,
+tuple, and ___4___ or can be more complicated such as objects and lambda functions.  '''
+
+# Now here are the answer sets for all three quizzes.  These answer sets will be referenced when the users respond to the answer prompts
+answers_quiz1=["HTML", "hyper text markup language", "CSS", "Cascading Style Sheets"]
+answers_quiz2=["variable", "value", "string", "concatenation"]
+answers_quiz3=["function", "parameters", "none", "set"]
+
+
+
+
+
+
+
+
+# Now, our first function.  This function will prompt the user to select one of three levels of difficulty: easy, medium, and difficult, and return
+# as output the appropriate level quiz and answer set.
+user_prompt=raw_input("Please select a level:easy, medium, or difficult")
+def select_level(user_prompt):
+
+
+    if user_prompt=="easy":
+        return quiz1
+
+    if user_prompt=="medium":
+        return quiz2
+
+    if user_prompt=="difficult":
+        return quiz3
+
+
+
+print select_level(user_prompt)
+
+# This function takes the same user_prompt and returns the appropriate answer set dependent upon the level of quiz selected
+
+def select_answers(user_prompt):
+    if select_level(user_prompt)==quiz1:
+        return answers_quiz1
+    if select_level(user_prompt)==quiz2:
+        return answers_quiz2
+    if select_level(user_prompt)==quiz3:
+        return answers_quiz3
+
+
+
+# This next function checks the user response with the answer list and returns whether the response is correct or incorrect.
+def check_answer(user_response, answers, answer_set_index):
+
+     if user_response==answers[answer_set_index]:
+         return "Correct"
+     return "Incorrect"
+
+
+
+
+# And now for the game itself.. First, a quiz variable defines which quiz is being played as determined by the
+# response that the player entered in the select_level function. Depending on which quiz is in play, the appropriate answer set is then stored in a variable named answers.
+# This answer set will be be referenced when checking the user response in the check_answer function.
+
+def fill_in_the_blanks():
+    quiz=select_level(user_prompt)
+    answers=select_answers(user_prompt)
+    blanks_set_index=0# sets the blanks index to 0 The first blank will appear in the first prompt
+    answer_set_index=0# when the check_answer function is called, the first answer in the appropriate answer set will be referenced
+    while blanks_set_index<len(blanks):
+        while answer_set_index<len(answers):
+            user_response=raw_input("Please fill in the correct answer for " + blanks[blanks_set_index])# the user is prompted to fill in the first blank
+            while check_answer(user_response, answers, answer_set_index)=="Incorrect": # if the answer checks out as "Incorrect:, the user is prompted to try again.
+                user_response=raw_input("Incorrect response. Please fill in the correct answer for " + blanks[blanks_set_index])
+            if check_answer(user_response, answers, answer_set_index)=="Correct":# if the user answers correctly,a message indicating the answer is correct will appear, and the quiz will
+                print "Congratulations, your answer is correct!"# be re-printed with the blank replaced by the correct response
+                quiz=quiz.replace(blanks[blanks_set_index], user_response)
+                print quiz
+                blanks_set_index +=1 #adds one to the blank-set-index.  The function loops back and the user is prompted to fill in the next blank.
+                answer_set_index+=1 # advances the answer set index so the next answer is checked when the check answer function is called
+
+    print "Congratulations! You have sucessfully completed this quiz!"
+
+
+print fill_in_the_blanks()
