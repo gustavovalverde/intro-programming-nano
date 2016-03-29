@@ -28,63 +28,46 @@ hard = [quizzes[2], answers[2], blanks[2]]
 levels = {'easy': easy, 'medium': medium, 'hard': hard}
 
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-
 def game_level():
     """This function selects the difficulty chosen by user, and asks for the
     number of guesses the user wants for that difficulty
     """
     print "Please select a game difficulty by typing it in!"
     print "Possible choices include easy, medium, and hard."
-    choice = raw_input(bcolors.OKBLUE + "What's your desired difficulty? " + bcolors.ENDC).lower()
+    choice = raw_input("What's your desired difficulty? ").lower()
     if choice in levels:
         choosedLevel = levels[choice]
     else:
-        print bcolors.FAIL + "That's not an option!" + bcolors.ENDC + "\n"
+        print "That's not an option!" + "\n"
 
-    print bcolors.OKBLUE + "Now you must fill the blanks here:" + "\n" + bcolors.ENDC + choosedLevel[0] + "\n" + "\n" + bcolors.OKBLUE + "How many guesses would you like per problem?" + bcolors.ENDC
-    attempts_input = raw_input(bcolors.OKBLUE + "Please enter a positive integer number: " + bcolors.ENDC)
-    return attempts_input, choosedLevel
+    print "Now you must fill the blanks here:" + "\n" + choosedLevel[0] + "\n" + "\n" + "How many guesses would you like per problem?"
+    attempts_input = raw_input("Please enter a positive integer number: ")
 
-attempts_input, choosedLevel = game_level()
+    return choosedLevel, attempts_input
 
-def play_game(statement, answers, blanks):
+
+def play_game(choosedLevel):
+    print choosedLevel[0][0]
+    print choosedLevel[0][1]
+    print choosedLevel[0][2]
+    print choosedLevel[1]
     attempts = 0
     answer_index = 0
-    for blank in blanks:
+    for blank in choosedLevel[2]:
         while answer_index < len(answers) and attempts < int(attempts_input):
-            user_answer = raw_input(bcolors.OKBLUE + "\n" + "What should be submitted for" + blank + "? " + bcolors.ENDC + "\n")
-            good_answer = answer_check(answers, answer_index, user_answer)
-            if good_answer is not None:
-                statement = statement.replace(blank, good_answer)
-                print "\n" + bcolors.OKGREEN + "Good, Thats the answer" + bcolors.ENDC + "\n" + statement + "\n"
+            user_answer = raw_input("\n" + "What should be submitted for" + blank + "? " + "\n")
+            if user_answer == choosedLevel[1][answer_index]:
+                choosedLevel[0] = choosedLevel[0].replace(blank, user_answer)
+                print "\n" + "Good, Thats the answer" + "\n" + choosedLevel[0] + "\n"
                 answer_index += 1
-                correct = True
-                if answer_index == len(answers):
-                    break
             else:
                 attempts += 1
                 if attempts == int(attempts_input):
                     break
-                print "\n" + bcolors.FAIL + "That's not the answer, try again" + bcolors.ENDC + "\n" + bcolors.WARNING + "You have " + str(int(attempts_input) - attempts) + " attempt(s) left" + bcolors.ENDC + "\n" + statement + "\n"
+                print "\n" + "That's not the answer, try again" + "\n" + "You have " + str(int(attempts_input) - attempts) + " attempt(s) left" + "\n" + choosedLevel[0] + "\n"
     if attempts < int(attempts_input):
-        print bcolors.OKGREEN + "       ******* Great, you completed the Quizz *******" + "\n" + bcolors.ENDC
+        print "       ******* Great, you completed the Quizz *******" + "\n"
     else:
-        print bcolors.FAIL + "Sorry, you ran out of attempts" + bcolors.ENDC
+        print "Sorry, you ran out of attempts"
 
-def answer_check(answers, answer_index, user_answer):
-    if user_answer in answers[answer_index]:
-        return user_answer
-    return None
-
-
-# play_game(statement, answers, blanks)
+play_game(game_level())
