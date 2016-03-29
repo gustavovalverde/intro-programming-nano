@@ -47,27 +47,22 @@ def game_level():
 
 
 def play_game(choosedLevel):
-    print choosedLevel[0][0]
-    print choosedLevel[0][1]
-    print choosedLevel[0][2]
-    print choosedLevel[1]
+    quiz_string = choosedLevel[0][0]
+    # Answer_index 0 -->  choosedLevel[0][1][0]
+    # Blanks list -->  choosedLevel[0][2]
     attempts = 0
-    answer_index = 0
-    for blank in choosedLevel[2]:
-        while answer_index < len(answers) and attempts < int(attempts_input):
+    for answer, blank in zip(choosedLevel[0][1], choosedLevel[0][2]):
             user_answer = raw_input("\n" + "What should be submitted for" + blank + "? " + "\n")
-            if user_answer == choosedLevel[1][answer_index]:
-                choosedLevel[0] = choosedLevel[0].replace(blank, user_answer)
-                print "\n" + "Good, Thats the answer" + "\n" + choosedLevel[0] + "\n"
-                answer_index += 1
-            else:
+            while user_answer != answer and attempts <= int(choosedLevel[1]):
                 attempts += 1
-                if attempts == int(attempts_input):
-                    break
-                print "\n" + "That's not the answer, try again" + "\n" + "You have " + str(int(attempts_input) - attempts) + " attempt(s) left" + "\n" + choosedLevel[0] + "\n"
-    if attempts < int(attempts_input):
-        print "       ******* Great, you completed the Quizz *******" + "\n"
-    else:
-        print "Sorry, you ran out of attempts"
+                if attempts == int(choosedLevel[1]):
+                    return "Sorry, you ran out of attempts"
+                print "\n" + "That's not the answer, try again" + "\n" + "You have " + str(int(choosedLevel[1]) - attempts) + " attempt(s) left" + "\n" + quiz_string + "\n"
+                user_answer = raw_input("\n" + "What should be submitted for" + blank + "? " + "\n")
 
-play_game(game_level())
+            quiz_string = quiz_string.replace(blank, user_answer)
+            print "\n" + "Good, Thats the answer" + "\n" + quiz_string + "\n"
+    if attempts < int(choosedLevel[1]):
+        return "       ******* Great, you completed the Quizz *******" + "\n"
+
+print play_game(game_level())
