@@ -59,27 +59,29 @@ def play_game(statement, answers, blanks):
     attempts = 0
     answer_index = 0
     for blank in blanks:
-        if answer_index < len(answers):
-            correct = False
-            while not correct:
-                if attempts < int(attempts_input):
-                    user_answer = raw_input(bcolors.OKBLUE + "\n" + "What should be submitted for" + blank + "? " + bcolors.ENDC + "\n")
-                    good_answer = answer_check(answers, answer_index, user_answer)
-                    if good_answer is not None:
-                        statement = statement.replace(blank, good_answer)
-                        print "\n" + bcolors.OKGREEN + "Good, Thats the answer" + bcolors.ENDC + "\n" + statement + "\n"
-                        answer_index += 1
-                        correct = True
-                    else:
-                        attempts += 1
-                        if attempts == int(attempts_input):
-                            break
-                        print "\n" + bcolors.FAIL + "That's not the answer, try again" + bcolors.ENDC + "\n" + bcolors.WARNING + "You have " + str(int(attempts_input) - attempts) + " attempt(s) left" + bcolors.ENDC + "\n" + statement + "\n"
-                else:
-                    print bcolors.FAIL + "Sorry, you ran out of attempts" + bcolors.ENDC
-                    break
+        if attempts < int(attempts_input):
+            if answer_index < len(answers):
+                correct = False
+                while not correct:
+                    if answer_index < len(answers):
+                        user_answer = raw_input(bcolors.OKBLUE + "\n" + "What should be submitted for" + blank + "? " + bcolors.ENDC + "\n")
+                        good_answer = answer_check(answers, answer_index, user_answer)
+                        if good_answer is not None:
+                            statement = statement.replace(blank, good_answer)
+                            print "\n" + bcolors.OKGREEN + "Good, Thats the answer" + bcolors.ENDC + "\n" + statement + "\n"
+                            answer_index += 1
+                            correct = True
+                            if answer_index == len(answers):
+                                break
+                        else:
+                            attempts += 1
+                            if attempts == int(attempts_input):
+                                break
+                            print "\n" + bcolors.FAIL + "That's not the answer, try again" + bcolors.ENDC + "\n" + bcolors.WARNING + "You have " + str(int(attempts_input) - attempts) + " attempt(s) left" + bcolors.ENDC + "\n" + statement + "\n"
     if attempts < int(attempts_input):
-        print bcolors.GREEN + "       ******* Great, you completed the Quizz *******" + "\n" + bcolors.ENDC
+        print bcolors.OKGREEN + "       ******* Great, you completed the Quizz *******" + "\n" + bcolors.ENDC
+    else:
+        print bcolors.FAIL + "Sorry, you ran out of attempts" + bcolors.ENDC
 
 def answer_check(answers, answer_index, user_answer):
     if user_answer in answers[answer_index]:
