@@ -1,12 +1,14 @@
-def double1 (x):
-        return 2*x
+def isNone(x):
+    if x is not None:
+        print "not None"
+    if x:
+        print "it's there"
 
-def double2 (x):
-        print 2*x
+y = None
+z = 1
 
-def double3 (x):
-        print 2*x
+print "Try 1, y is None:"
+isNone(y)
 
-def double4 (x):
-        print 2*x
-        return 2*x
+print "Try 2, z is 1:"
+isNone(z)
