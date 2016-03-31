@@ -58,10 +58,11 @@ def game_level():
     print "Please select a game difficulty by typing it in!"
     print "Possible choices include easy, medium, and hard."
     choice = raw_input("What's your desired difficulty? ").lower()
-    if choice not in levels:
+    while choice not in levels:
         print "\n" + "That's not an option!" + "\n"
-        game_level()
+        choice = raw_input("What's your desired difficulty? ").lower()
     choosedLevel = levels[choice]
+    print "\n" + "Quiz for this difficulty:" + "\n" + choosedLevel[0]
     return choosedLevel
 
 
@@ -69,16 +70,12 @@ def game_attempts(choosedLevel):
     """It also asks the user for the number of guesses the user wants for the
     chosen diffilcuty, for later use in play_game.
     """
-    print "\n" + "Quiz for this difficulty:" + "\n" + choosedLevel[0] + "\n"
-    "\n" + "How many guesses would you like per problem?"
-    while True:
-        try:
-            user_attempts = int(raw_input("Please enter a positive integer number: "))
-            break
-        except ValueError:
-            print "\n" + "Sorry, the program needs an integer" + "\n"
-#            game_attempts(choosedLevel)
-    return choosedLevel, user_attempts
+    print "\n" + "How many guesses would you like per problem?"
+    user_attempts = raw_input("Please enter a positive integer number: ")
+    while user_attempts.isdigit() is not True:
+        print "\n" + "Sorry, the program needs an integer" + "\n"
+        user_attempts = raw_input("Please enter a positive integer number: ")
+    return choosedLevel, int(user_attempts)
 
 
 def play_game(choosedLevel):
@@ -87,10 +84,10 @@ def play_game(choosedLevel):
     the respective 'blank' using a for loop and a zip. If the user answer is
     correct it keeps asking for the next 'blank', if its not then it loops in
     a 'while' until the right answer its given if attempts still remains"""
-    quiz_string = choosedLevel[0][0]
-    user_attempts = choosedLevel[1]
     # Answers_lists -->  choosedLevel[0][1]
     # Blanks list -->  choosedLevel[0][2]
+    quiz_string = choosedLevel[0][0]
+    user_attempts = choosedLevel[1]
     attempts = 0
     for answer, blank in zip(choosedLevel[0][1], choosedLevel[0][2]):
             user_answer = raw_input("\n" + "What should be submitted for" +
